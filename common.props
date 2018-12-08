@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <Version>0.0.1</Version>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+	<RootNamespace>SpreadSheet</RootNamespace>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://bitbucket.org/liuhll/spreadsheet/src</PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://liuhll@bitbucket.org/liuhll/spreadsheet.git</RepositoryUrl>
+	<Authors>Liuhongliang</Authors>
+    <Product>SpreadSheet</Product>
+    <Copyright>Copyright © Liuhongliang All Rights Reserved.</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release' ">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+ 
+
+</Project>
