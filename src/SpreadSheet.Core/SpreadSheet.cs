@@ -68,6 +68,21 @@ namespace SpreadSheet
             return itemVal;
         }
 
+        public SpreadSheetCell GetCell(CellPoint point)
+        {
+            return new SpreadSheetCell(point,GetVal(point.X,point.Y));
+        }
+
+        public IEnumerable<SpreadSheetCell> GetCells(IEnumerable<CellPoint> points)
+        {
+            var cells = new List<SpreadSheetCell>();
+            foreach (var point in points)
+            {
+                cells.Add(GetCell(point));
+            }
+            return cells;
+        }
+
         public void SetVal(IEnumerable<SpreadSheetCell> items)
         {
             foreach (var item in items)
