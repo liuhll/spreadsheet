@@ -70,7 +70,7 @@ namespace SpreadSheet
 
         public SpreadSheetCell GetCell(CellPoint point)
         {
-            return new SpreadSheetCell(point,GetVal(point.X,point.Y));
+            return new SpreadSheetCell(point,GetVal(point.X - 1,point.Y - 1));
         }
 
         public IEnumerable<SpreadSheetCell> GetCells(IEnumerable<CellPoint> points)

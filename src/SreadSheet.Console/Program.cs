@@ -1,23 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SpreadSheet.Commands;
+using SpreadSheet.Exceptions;
+using SpreadSheet;
+using System;
+using System.Threading;
+using SpreadSheet.Commands.Create;
 
 namespace SreadSheet
 {
     class Program
     {
+        private static ICommandParser commandParser = new CommandParser();
+        private static SpreadSheet.SpreadSheet globalSpreadSheet;
+
         static void Main(string[] args)
         {
-           
-            var list = new List<SpreadSheet.SpreadSheetCell>()
+
+            do
             {
-                new SpreadSheet.SpreadSheetCell(1,1,"121"),
-                new SpreadSheet.SpreadSheetCell(2,1,"2323"),
-                new SpreadSheet.SpreadSheetCell(6,2,"232")
-            };
-            var sheet = SpreadSheet.SpreadSheet.CreateSheet(11, 11, list);
-            sheet.SetVal(1,3,"2323");
-            sheet.Out();
-            Console.ReadLine();
+                Console.Write("Enter command: ");
+                var inputLine = Console.ReadLine();
+                if ("Q".Equals(inputLine, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Console.WriteLine("Quit the program");
+                    Thread.Sleep(1000);
+                    break;
+                }
+                else
+                {
+                    try
+                    {
+                        HandleInputCommand(inputLine);
+                    }
+                    catch (SpreadSheetException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Application error," + ex.Message);
+                        Console.WriteLine("Quit the program");
+                        Thread.Sleep(1000);
+                        break;
+                    }
+                }
+            } while (true);
+        }
+
+        private static void HandleInputCommand(string inputLine)
+        {
+            var handleInput = PreHanleInputLine(inputLine);
+            var command = commandParser.PaserCommand(handleInput.Item1);
+            if (command is CreateCommand)
+            {
+                globalSpreadSheet = command.Operate(handleInput.Item2);
+                globalSpreadSheet.Out();
+            }
+            else
+            {
+                var handleSpreadSheet = command.Operate(handleInput.Item2, globalSpreadSheet);
+                handleSpreadSheet.Out();
+            }
+        }
+
+        private static Tuple<string, string> PreHanleInputLine(string inputLine)
+        {
+            var command = inputLine.Substring(0, 1);
+            var val = inputLine.Substring(2);
+            return new Tuple<string, string>(command, val);
         }
     }
 }

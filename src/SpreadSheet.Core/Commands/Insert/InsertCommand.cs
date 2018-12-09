@@ -13,7 +13,7 @@ namespace SpreadSheet.Commands.Insert
 
         public SpreadSheet Operate(string input, SpreadSheet spreadSheet = null)
         {
-            if (spreadSheet != null)
+            if (spreadSheet == null)
             {
                 throw new SpreadSheetException("您还未创建spreadSheet表,无法对其进行插入操作");
             }

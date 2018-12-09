@@ -23,7 +23,7 @@ namespace SpreadSheet.Commands.Insert
                     throw new SpreadSheetException("插入的cell的x坐标必须为整数");
                 }
 
-                if (!int.TryParse(group[0], out int y))
+                if (!int.TryParse(group[1], out int y))
                 {
                     throw new SpreadSheetException("插入的cell的y坐标必须为整数");
                 }
