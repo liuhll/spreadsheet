@@ -15,6 +15,22 @@ namespace SpreadSheet
             _val = val;
         }
 
+        public SpreadSheetCell(CellPoint point, string val)
+        {
+            _x = point.X;
+            _y = point.Y;
+            _val = val;
+        }
+
+        public CellPoint Point
+        {
+            get
+            {
+                return new CellPoint(_x,_y);
+            }
+
+        }
+
         public int X
         {
             get
