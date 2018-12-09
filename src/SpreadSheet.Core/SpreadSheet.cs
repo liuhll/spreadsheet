@@ -22,7 +22,7 @@ namespace SpreadSheet
             return new SpreadSheet(w, h);
         }
 
-        public static SpreadSheet CreateSheet(int w, int h, IEnumerable<SpreadSheetItem> items)
+        public static SpreadSheet CreateSheet(int w, int h, IEnumerable<SpreadSheetCell> items)
         {
             var sheet = CreateSheet(w, h);
             sheet.SetVal(items);
@@ -51,7 +51,7 @@ namespace SpreadSheet
             _sheetData[x - 1,y - 1] = val;
         }
 
-        public void SetVal(SpreadSheetItem item)
+        public void SetVal(SpreadSheetCell item)
         {
 
             _sheetData[item.X -1, item.Y - 1] = item.Val;
@@ -67,7 +67,7 @@ namespace SpreadSheet
             return itemVal;
         }
 
-        public void SetVal(IEnumerable<SpreadSheetItem> items)
+        public void SetVal(IEnumerable<SpreadSheetCell> items)
         {
             foreach (var item in items)
             {
