@@ -94,12 +94,16 @@ namespace SpreadSheet
         public void Out()
         {
             Console.WriteLine(" ---".Repeat(_w));
-            for (var i = 0; i < _h; i++)
+            for (var i = 1; i <= _h; i++)
             {
                 Console.Write("|");
-                for (var j = 0; j < _w; j++)
+                for (var j = 1; j <= _w; j++)
                 {
                     var item = GetVal(i, j);
+                    if (item == null)
+                    {
+                        item = string.Empty;
+                    }
                     Console.Write(item.PadRight(4, ' '));
                 }
                 Console.WriteLine("|");
