@@ -1,4 +1,5 @@
-﻿using SpreadSheet.Extensions;
+﻿using SpreadSheet.Exceptions;
+using SpreadSheet.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -47,14 +48,14 @@ namespace SpreadSheet
 
         public void SetVal(int x,int y, string val)
         {
-
+            VerifyVal(x, y, val);
             _sheetData[x - 1,y - 1] = val;
         }
 
 
         public void SetVal(SpreadSheetCell item)
         {
-
+            VerifyVal(item.X, item.Y, item.Val);
             _sheetData[item.X -1, item.Y - 1] = item.Val;
         }
 
@@ -105,6 +106,18 @@ namespace SpreadSheet
                 Console.WriteLine("|");
             }
             Console.WriteLine(" ---".Repeat(_w));
+        }
+
+        private void VerifyVal(int x, int y, string val)
+        {
+            if (x > _w || y > _h)
+            {
+                throw new SpreadSheetException("指定的cell位置溢出");
+            }
+            if (val.Length > 3)
+            {
+                throw new SpreadSheetException("设值不合法");
+            }
         }
     }
 }
