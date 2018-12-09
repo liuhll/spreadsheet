@@ -56,22 +56,22 @@ namespace SpreadSheet
         public void SetVal(SpreadSheetCell item)
         {
             VerifyVal(item.X, item.Y, item.Val);
-            _sheetData[item.X -1, item.Y - 1] = item.Val;
+            SetVal(item.X,item.Y,item.Val);
         }
 
         public string GetVal(int x, int y)
         {
-            var itemVal = _sheetData[x, y];
-            if (itemVal == null)
+            if (x > _w || y > _h)
             {
-                return string.Empty;
+                throw new SpreadSheetException("要获取表格的Cell位置的值溢出");
             }
+            var itemVal = _sheetData[x - 1, y - 1];
             return itemVal;
         }
 
         public SpreadSheetCell GetCell(CellPoint point)
         {
-            return new SpreadSheetCell(point,GetVal(point.X - 1,point.Y - 1));
+            return new SpreadSheetCell(point,GetVal(point.X,point.Y));
         }
 
         public IEnumerable<SpreadSheetCell> GetCells(IEnumerable<CellPoint> points)
