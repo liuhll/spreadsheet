@@ -6,7 +6,6 @@ namespace SpreadSheet.Exceptions
     {
         public SpreadSheetException(string exceptionMessage) : base(exceptionMessage)
         {
-
         }
     }
 }

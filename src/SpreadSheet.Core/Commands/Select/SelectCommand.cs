@@ -1,5 +1,4 @@
 ﻿using SpreadSheet.Exceptions;
-using System;
 
 namespace SpreadSheet.Commands.Select
 {
@@ -20,7 +19,7 @@ namespace SpreadSheet.Commands.Select
             }
             var selectPoints = _selectSheetCellParser.GetSelectPoints(input);
             var selectCells = spreadSheet.GetCells(selectPoints);
-            var selectedSheet = SpreadSheet.CreateSheet(spreadSheet.Width,spreadSheet.Height, selectCells);
+            var selectedSheet = SpreadSheet.CreateSheet(spreadSheet.Width, spreadSheet.Height, selectCells);
             return selectedSheet;
         }
     }

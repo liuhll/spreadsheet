@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace SpreadSheet.Commands
+﻿namespace SpreadSheet.Commands
 {
     public interface ICommand
     {
-        SpreadSheet Operate(string input,SpreadSheet spreadSheet = null);
+        SpreadSheet Operate(string input, SpreadSheet spreadSheet = null);
     }
 }

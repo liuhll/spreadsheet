@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SpreadSheet.Commands
+﻿namespace SpreadSheet.Commands
 {
     public interface ICommandParser
     {

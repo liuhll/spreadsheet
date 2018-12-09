@@ -1,20 +1,18 @@
 ﻿using SpreadSheet.Commands;
+using SpreadSheet.Commands.Create;
 using SpreadSheet.Exceptions;
-using SpreadSheet;
 using System;
 using System.Threading;
-using SpreadSheet.Commands.Create;
 
 namespace SreadSheet
 {
-    class Program
+    internal class Program
     {
         private static ICommandParser commandParser = new CommandParser();
         private static SpreadSheet.SpreadSheet globalSpreadSheet;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             do
             {
                 Console.Write("Enter command: ");

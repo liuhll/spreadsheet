@@ -1,11 +1,11 @@
 ﻿using SpreadSheet.Exceptions;
-using System;
 
 namespace SpreadSheet.Commands.Insert
 {
     public class InsertCommand : ICommand
     {
         private readonly IInsertSheetCellParser _insertSheetCellParser;
+
         public InsertCommand()
         {
             _insertSheetCellParser = new InsertSheetCellParser();

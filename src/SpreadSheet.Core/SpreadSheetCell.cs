@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SpreadSheet
+﻿namespace SpreadSheet
 {
     public class SpreadSheetCell
     {
@@ -26,9 +24,8 @@ namespace SpreadSheet
         {
             get
             {
-                return new CellPoint(_x,_y);
+                return new CellPoint(_x, _y);
             }
-
         }
 
         public int X

@@ -10,13 +10,13 @@ namespace SpreadSheet
         private readonly int _w;
         private readonly int _h;
         private readonly string[,] _sheetData;
+
         private SpreadSheet(int w, int h)
         {
             _w = w;
             _h = h;
-            _sheetData = new string[_w,_h];
+            _sheetData = new string[_w, _h];
         }
-
 
         public static SpreadSheet CreateSheet(int w, int h)
         {
@@ -46,17 +46,16 @@ namespace SpreadSheet
             }
         }
 
-        public void SetVal(int x,int y, string val)
+        public void SetVal(int x, int y, string val)
         {
             VerifyVal(x, y, val);
-            _sheetData[x - 1,y - 1] = val;
+            _sheetData[x - 1, y - 1] = val;
         }
-
 
         public void SetVal(SpreadSheetCell item)
         {
             VerifyVal(item.X, item.Y, item.Val);
-            SetVal(item.X,item.Y,item.Val);
+            SetVal(item.X, item.Y, item.Val);
         }
 
         public string GetVal(int x, int y)
@@ -71,7 +70,7 @@ namespace SpreadSheet
 
         public SpreadSheetCell GetCell(CellPoint point)
         {
-            return new SpreadSheetCell(point,GetVal(point.X,point.Y));
+            return new SpreadSheetCell(point, GetVal(point.X, point.Y));
         }
 
         public IEnumerable<SpreadSheetCell> GetCells(IEnumerable<CellPoint> points)
@@ -89,7 +88,7 @@ namespace SpreadSheet
             foreach (var item in items)
             {
                 _sheetData[item.X - 1, item.Y - 1] = item.Val;
-            }           
+            }
         }
 
         public void Out()
@@ -101,7 +100,7 @@ namespace SpreadSheet
                 for (var j = 0; j < _w; j++)
                 {
                     var item = GetVal(i, j);
-                    Console.Write(item.PadRight(4,' '));
+                    Console.Write(item.PadRight(4, ' '));
                 }
                 Console.WriteLine("|");
             }

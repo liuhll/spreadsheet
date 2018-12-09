@@ -1,6 +1,5 @@
 using SpreadSheet.Commands;
 using SpreadSheet.Exceptions;
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -34,7 +33,7 @@ namespace SpreadSheet.Test
                 new SpreadSheetCell(1, 1, "10"),
                 new SpreadSheetCell(1,2, "20")
             };
-            var sheet = SpreadSheet.CreateSheet(w, h,cells);
+            var sheet = SpreadSheet.CreateSheet(w, h, cells);
             Assert.True(w == sheet.Width && h == sheet.Height, $"成功创建了一个宽为{w},高为{h}的表格");
             var pont1x1yVal = sheet.GetVal(1, 1);
             var pont1x2yVal = sheet.GetVal(1, 2);
@@ -49,7 +48,7 @@ namespace SpreadSheet.Test
             var h = 10;
             var sheet = CreateSpreadSheet(w, h);
             var insertCommad = _commandParser.PaserCommand("N");
-            insertCommad.Operate("1 1 10",sheet);
+            insertCommad.Operate("1 1 10", sheet);
             insertCommad.Operate("10 1 20", sheet);
             insertCommad.Operate("10 10 30", sheet);
             var insertVal1x1y = sheet.GetVal(1, 1);
@@ -57,15 +56,18 @@ namespace SpreadSheet.Test
             var insertVal10x10y = sheet.GetVal(10, 10);
             Assert.True("10" == insertVal1x1y && "20" == insertVal10x1y && "30" == insertVal10x10y);
 
-            Assert.Throws<SpreadSheetException>(() => {
+            Assert.Throws<SpreadSheetException>(() =>
+            {
                 insertCommad.Operate("11 1 10", sheet);
             });
 
-            Assert.Throws<SpreadSheetException>(() => {
+            Assert.Throws<SpreadSheetException>(() =>
+            {
                 insertCommad.Operate("2 1 1234", sheet);
             });
 
-            Assert.Throws<SpreadSheetException>(() => {
+            Assert.Throws<SpreadSheetException>(() =>
+            {
                 insertCommad.Operate("2 1 1 2", sheet);
             });
         }
@@ -83,17 +85,19 @@ namespace SpreadSheet.Test
             };
             var sheet = SpreadSheet.CreateSheet(w, h, cells);
             var selectCommad = _commandParser.PaserCommand("S");
-            var selectSheet = selectCommad.Operate("1 1 1 2",sheet);
+            var selectSheet = selectCommad.Operate("1 1 1 2", sheet);
             var cell1x1yVal = selectSheet.GetVal(1, 1);
             var cell1x2yVal = selectSheet.GetVal(1, 2);
             var cell1x3yVal = selectSheet.GetVal(1, 3);
             Assert.True("10" == cell1x1yVal && "20" == cell1x2yVal && null == cell1x3yVal);
 
-            Assert.Throws<SpreadSheetException>(() => {
+            Assert.Throws<SpreadSheetException>(() =>
+            {
                 selectCommad.Operate("11 11", sheet);
             });
 
-            Assert.Throws<SpreadSheetException>(() => {
+            Assert.Throws<SpreadSheetException>(() =>
+            {
                 selectCommad.Operate("1 2 2", sheet);
             });
         }
@@ -102,6 +106,5 @@ namespace SpreadSheet.Test
         {
             return SpreadSheet.CreateSheet(w, h);
         }
-
     }
 }
